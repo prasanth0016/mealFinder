@@ -1,3 +1,46 @@
 .nav-bg{
     background-color: orangered;
 }
+.banner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    background-image: url('../images/istockphoto-1457433817-612x612.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.b-s-box{
+    height: 45px;
+    width: 350px;
+    border-radius: 25px;
+    border: none;
+    text-align: center;
+    align-content: center;
+}
+.s-btn{
+    width: 45px;
+    height: 45px;
+    border-radius: 23px;
+    border: 2px solid white;
+    background-color: darkgoldenrod;
+    margin-left: 10px;
+}
+.s-icon{
+    color: white;
+}
+
+/* mobile screen */
+@media screen and (max-width:769px) {
+    .banner{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 250px;
+        background-image: url('../images/istockphoto-1457433817-612x612.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+}
