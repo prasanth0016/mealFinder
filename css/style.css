@@ -1,8 +1,16 @@
 .nav-bg{
     background-color: orangered;
 }
+.navIcon{
+    margin-right: 5px;
+}
+.spoons{
+    color: white;
+}
 .banner{
     display: flex;
+    flex-direction: column;
+    row-gap: 15px;
     justify-content: center;
     align-items: center;
     height: 400px;
@@ -29,6 +37,16 @@
 }
 .s-icon{
     color: white;
+}
+.b-quote{
+color: white;
+font-family: arial;
+}
+.quote-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* mobile screen */
