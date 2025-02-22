@@ -61,4 +61,41 @@ font-family: arial;
         background-size: cover;
         background-position: center;
     }
+    .b-s-box{
+        height: 30px;
+        width: 200px;
+        border-radius: 12px;
+        border: none;
+        text-align: center;
+        align-content: center;
+    }
+    .s-btn{
+        width: 30px;
+        height: 30px;
+        border-radius: 23px;
+        border: 2px solid white;
+        background-color: darkgoldenrod;
+        margin-left: 10px;
+    }
+    .s-icon{
+        color: white;
+    }
+    .b-quote{
+    color: white;
+    font-family: arial;
+    
+    }
+    .fav-quote{
+        font-size: 18px;
+
+    }
+    .pers-quote{
+        font-size: 12px;
+    }
+    .quote-div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
