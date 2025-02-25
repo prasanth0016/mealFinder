@@ -96,7 +96,7 @@
 .cat-img {
     width: 80%;
     height: 80%;
-    transition-duration: 0.5s;
+    transition-duration: 0.2s;
 }
 
 .cat-img:hover {
@@ -111,7 +111,7 @@
     font-family: arial;
     font-size: 12px;
     font-weight: bold;
-    padding: 2px;
+    padding: 5px;
     border-radius: 2px;
 }
 
