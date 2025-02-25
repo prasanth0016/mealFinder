@@ -3,6 +3,7 @@
 let catmaindiv = document.getElementById("cats-main-div");
 let mealsHeadDiv = document.getElementById("meal-head-div");
 let mealsInnerDiv = document.getElementById("mealsInner-div");
+let catClose = document.getElementById("cat-close")
 async function fetchData() {
     let response = await fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
     let categoriesApi = await response.json()
@@ -21,6 +22,7 @@ async function fetchData() {
         ele.addEventListener('click', async (event) => {
 
             mealsInnerDiv.innerHTML="";
+            catClose.innerHTML="";
             let categoryName = event.target.previousElementSibling.textContent;
             let url = 'https://www.themealdb.com/api/json/v1/1/filter.php?c='
             url += categoryName;
