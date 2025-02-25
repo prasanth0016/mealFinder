@@ -21,15 +21,22 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-}
 
+}
+.sBox-sBtn-div{
+    position:fixed;
+    top: 100px;
+    z-index: 10000;
+}
 .b-s-box {
     height: 45px;
     width: 350px;
+    border: 1px solid skyblue;
     border-radius: 25px;
-    border: none;
+    box-shadow: 2px 2px 2px skyblue;
     text-align: center;
     align-content: center;
+    
 }
 
 .s-btn {
@@ -90,7 +97,7 @@
     width: 200px;
     height: 200px;
     border-radius: 4px;
-
+    box-shadow: 1px 1px 4px lightgrey;
 }
 
 .cat-img {
@@ -114,6 +121,45 @@
     padding: 5px;
     border-radius: 2px;
 }
+
+/* MEALS */
+
+.meals-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin: 50px;
+}
+.mealCard-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+    width: 200px;
+    height: 200px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px lightblue;
+}
+.mealCard-img{
+    width: 100%;
+    height: 80%;
+}
+.mealTitle{
+    font-size: 12px;
+    font-weight: bold;
+    font-family: arial;
+    color: white;
+    padding: 2px;
+    background-color: brown;
+    border-radius: 2px;
+    text-align: center;
+}
+.meal-cat-name{
+    margin-left: 20px;
+}
+
 
 /* FOOTER */
 
@@ -196,4 +242,89 @@
         justify-content: center;
         align-items: center;
     }
+
+    /* CATEGORIES */
+
+.underline {
+    width: 100px;
+    height: 5px;
+    background-color: orangered;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.cat-heading {
+    margin: 20px;
+}
+
+.cats-main-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 100px;
+
+}
+
+.catdiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 4px;
+    box-shadow: 3px 3px 3px skyblue;
+
+}
+
+.cat-img {
+    width: 80%;
+    height: 80%;
+    transition-duration: 0.2s;
+}
+
+.cat-img:hover {
+    transform: scale(1.2);
+}
+
+.cats-title {
+    position: relative;
+    left: 40px;
+    background-color: orange;
+    color: white;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 2px;
+}
+
+/* FOOTER */
+
+.foot-main-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 50px;
+    background-color: orangered;
+    margin-top: 40px;
+
+}
+
+.foot-h3 {
+    color: white;
+    font-family: arial;
+    font-size: 12px;
+
+}
+
+.foot-rights {
+    color: black;
+    font-size: 6px;
+
+}
 }

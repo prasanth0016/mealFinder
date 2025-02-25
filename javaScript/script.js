@@ -1,7 +1,8 @@
 
 
-let catmaindiv = document.getElementById("cats-main-div")
-
+let catmaindiv = document.getElementById("cats-main-div");
+let mealsHeadDiv = document.getElementById("meal-head-div");
+let mealsInnerDiv = document.getElementById("mealsInner-div");
 async function fetchData() {
     let response = await fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
     let categoriesApi = await response.json()
@@ -13,15 +14,35 @@ async function fetchData() {
     `;
         catmaindiv.appendChild(catdiv);
     });
-   let imgele=Array.from(document.getElementsByClassName("cat-img"));
-   imgele.forEach((ele)=>{
-    ele.addEventListener('click',(event)=>{
-        document.getElementById("meals").innerHTML=event.target.previousElementSibling.textContent;
-        
+
+    // MEALS LIST ADDING
+    let imgElements = Array.from(document.getElementsByClassName("cat-img"));
+    imgElements.forEach((ele) => {
+        ele.addEventListener('click', async (event) => {
+
+            mealsInnerDiv.innerHTML="";
+            let categoryName = event.target.previousElementSibling.textContent;
+            let url = 'https://www.themealdb.com/api/json/v1/1/filter.php?c='
+            url += categoryName;
+
+            let response = await fetch(url);
+            let specificCategoryApi = await response.json();
+
+            mealsHeadDiv.innerHTML = `<h2 class="meal-cat-name">${categoryName}</h2>
+               <div class="underline"></div>
+            `;
+
+            specificCategoryApi.meals.forEach((obj) => {
+                let mealCardDiv = document.createElement("div");
+                mealCardDiv.classList.add("mealCard-div");
+                mealCardDiv.innerHTML = `
+                                  <img  class="mealCard-img" src="${obj.strMealThumb}" alt="${obj.strMealThumb}" >
+                                  <h6 class="mealTitle" >${obj.strMeal}</h6>
+                       `;
+                mealsInnerDiv.appendChild(mealCardDiv);
+            });
+
+        })
     })
-   })
 }
 fetchData();
-
-
-
