@@ -160,6 +160,45 @@
     margin-left: 20px;
 }
 
+/* mealIngredients-main-div */
+
+.mealIngredients-main-div{
+    display: flex;
+    padding: 50px;
+    /* justify-content: space-evenly; */
+}
+.firstDiv{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 100px;
+    border: 1px solid black;
+}
+.mealDetailImg{
+    width: 300px;
+    height: 400px;
+}
+.firstTwo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 30px;
+    /* align-items: center; */
+}
+.firstTwo-ingred{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    
+    gap: 15px;
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+    margin: 15px;
+
+}
 
 /* FOOTER */
 
