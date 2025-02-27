@@ -21,8 +21,8 @@ async function fetchData() {
     imgElements.forEach((ele) => {
         ele.addEventListener('click', async (event) => {
 
-            mealsInnerDiv.innerHTML="";
-            catClose.innerHTML="";
+            mealsInnerDiv.innerHTML = "";
+            catClose.innerHTML = "";
             let categoryName = event.target.previousElementSibling.textContent;
             let url = 'https://www.themealdb.com/api/json/v1/1/filter.php?c='
             url += categoryName;
@@ -38,7 +38,7 @@ async function fetchData() {
                 let mealCardDiv = document.createElement("div");
                 mealCardDiv.classList.add("mealCard-div");
                 mealCardDiv.innerHTML = `
-                                  <img  class="mealCard-img" src="${obj.strMealThumb}" alt="${obj.strMealThumb}" >
+                                  <img  class="mealCard-img" title="${obj.idMeal}" src="${obj.strMealThumb}" alt="${obj.strMealThumb}" >
                                   <h6 class="mealTitle" >${obj.strMeal}</h6>
                        `;
                 mealsInnerDiv.appendChild(mealCardDiv);
@@ -48,3 +48,32 @@ async function fetchData() {
     })
 }
 fetchData();
+
+// SIDE BAR ITEMS
+let sideBarItems = Array.from(document.getElementsByClassName("sideBar-item"))
+sideBarItems.forEach((ele) => {
+    ele.addEventListener('click', async (event) => {
+        mealsInnerDiv.innerHTML = "";
+        catClose.innerHTML = "";
+        let categoryName = event.target.textContent;
+        let url = 'https://www.themealdb.com/api/json/v1/1/filter.php?c='
+        url += categoryName;
+
+        let response = await fetch(url);
+        let specificCategoryApi = await response.json();
+
+        mealsHeadDiv.innerHTML = `<h2 class="meal-cat-name">${categoryName}</h2>
+               <div class="underline"></div>
+            `;
+
+        specificCategoryApi.meals.forEach((obj) => {
+            let mealCardDiv = document.createElement("div");
+            mealCardDiv.classList.add("mealCard-div");
+            mealCardDiv.innerHTML = `
+                                  <img  class="mealCard-img" src="${obj.strMealThumb}" alt="${obj.strMealThumb}" >
+                                  <h6 class="mealTitle" >${obj.strMeal}</h6>
+                       `;
+            mealsInnerDiv.appendChild(mealCardDiv);
+        });
+    })
+})
