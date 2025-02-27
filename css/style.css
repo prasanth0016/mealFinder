@@ -198,7 +198,11 @@
         background-size: cover;
         background-position: center;
     }
-
+    .sBox-sBtn-div{
+        position:fixed;
+        top: 60px;
+        z-index: 10000;
+    }
     .b-s-box {
         height: 30px;
         width: 200px;
@@ -300,6 +304,44 @@
     font-weight: bold;
     padding: 5px;
     border-radius: 2px;
+}
+
+/* MEALS */
+
+.meals-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin: 25px;
+}
+.mealCard-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+    width: 120px;
+    height: 120px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px lightblue;
+}
+.mealCard-img{
+    width: 100%;
+    height: 80%;
+}
+.mealTitle{
+    font-size: 8px;
+    font-weight: bold;
+    font-family: arial;
+    color: white;
+    padding: 1px;
+    background-color: brown;
+    border-radius: 2px;
+    text-align: center;
+}
+.meal-cat-name{
+    margin-left: 20px;
 }
 
 /* FOOTER */
