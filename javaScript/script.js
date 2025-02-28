@@ -103,7 +103,7 @@ function mealDetails() {
         ele.addEventListener('click', async (event) => {
             let mealId = event.target.dataset.mealid;
             let imgs = event.target.dataset.img;
-            mealIngredientsMainDiv.innerHTML="";
+            mealIngredientsMainDiv.innerHTML = "";
             let url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="
             url += mealId
             let specificMealApi;
@@ -113,7 +113,7 @@ function mealDetails() {
             } catch (error) {
                 console.log("fetching specific meal details:", error);
             }
-            specificMealApi.meals.forEach((obj)=>{
+            specificMealApi.meals.forEach((obj) => {
 
                 let firstDiv = document.createElement("div");
                 firstDiv.classList.add("firstDiv")
@@ -126,23 +126,52 @@ function mealDetails() {
                <h5>CATEGORY: ${obj.strCategory}</h5>
                <h6>source: <a target="_blank" href="${obj.strSource}">${obj.strSource}</a></h6>
                <h6>Tags: <span class="tags">${obj.strTags}</span></h6>
-               <div class="firstTwo-ingred">
-                  <h4>Ingredients:</h4>
-                  <div>${obj.strIngredient1}</div>
-                  <div>${obj.strIngredient2}</div>
-                  <div>${obj.strIngredient3}</div>
-                  <div>${obj.strIngredient4}</div>
-                  <div>${obj.strIngredient5}</div>
-                  <div>${obj.strIngredient6}</div>
-                  <div>${obj.strIngredient7}</div>
-                  <div>${obj.strIngredient8}</div>
-                  <div>${obj.strIngredient9}</div>
-                  <div>${obj.strIngredient10}</div>
-               </div>
+               <h4>Ingredients:</h4>
+
+               <ol class="firstTwo-ingred">
+                  <li>${obj.strIngredient1}</li>
+                  <li>${obj.strIngredient2}</li>
+                  <li>${obj.strIngredient3}</li>
+                  <li>${obj.strIngredient4}</li>
+                  <li>${obj.strIngredient5}</li>
+                  <li>${obj.strIngredient6}</li>
+                  <li>${obj.strIngredient7}</li>
+                  <li>${obj.strIngredient8}</li>
+                  <li>${obj.strIngredient9}</li>
+                  <li>${obj.strIngredient10}</li>
+               </ol>
             </div>
             `;
                 mealIngredientsMainDiv.appendChild(firstDiv);
-            
+
+                let secondDiv = document.createElement("div")
+                secondDiv.classList.add("secondDiv");
+                secondDiv.innerHTML = `
+                <div><h3 class="measure-head">Measurement :</h3></div>
+                <ul class="second-second">
+                <li>${obj.strMeasure1}</li>
+                <li>${obj.strMeasure2}</li>
+                <li>${obj.strMeasure3}</li>
+                <li>${obj.strMeasure4}</li>
+                <li>${obj.strMeasure5}</li>
+                <li>${obj.strMeasure6}</li>
+                <li>${obj.strMeasure7}</li>
+                <li>${obj.strMeasure8}</li>
+                <li>${obj.strMeasure9}</li>
+                <li>${obj.strMeasure10}</li>
+                <li>${obj.strMeasure11}</li>
+                </ul>
+                `
+                mealIngredientsMainDiv.appendChild(secondDiv);
+
+                let thirdDiv = document.createElement("div");
+                thirdDiv.classList.add("thirdDiv");
+                thirdDiv.innerHTML=`
+                 <h3>Instructions :</h3>
+                 <p>${obj.strInstructions}</p>
+                `
+                mealIngredientsMainDiv.appendChild(thirdDiv);
+
             })
 
 
