@@ -10,6 +10,40 @@ let mealIngredientsMainDiv = document.getElementById("mealIngredients-main-div")
 
 let mealCardImages = [];
 
+// SIDE BAR ITEMS
+
+let sideBarItems = Array.from(document.getElementsByClassName("sideBar-item"))
+sideBarItems.forEach((ele) => {
+    ele.addEventListener('click', async (event) => {
+        mealsInnerDiv.innerHTML = "";
+        catClose.innerHTML = "";
+
+        let categoryName = event.target.textContent;
+        let url = 'https://www.themealdb.com/api/json/v1/1/filter.php?c='
+        url += categoryName;
+
+        let response = await fetch(url);
+        let specificCategoryApi = await response.json();
+
+        mealsHeadDiv.innerHTML = `<h2 class="meal-cat-name">${categoryName}</h2>
+               <div class="underline"></div>
+            `;
+
+        specificCategoryApi.meals.forEach((obj) => {
+            let mealCardDiv = document.createElement("div");
+            mealCardDiv.classList.add("mealCard-div");
+            mealCardDiv.innerHTML = `
+                                  <img  class="mealCard-img" data-mealId="${obj.idMeal}" data-img="${obj.strMealThumb}" src="${obj.strMealThumb}" alt="${obj.strMealThumb}" >
+                                  <h6 class="mealTitle" >${obj.strMeal}</h6>
+                       `;
+            mealsInnerDiv.appendChild(mealCardDiv);
+        });
+        mealCardImages = Array.from(document.getElementsByClassName("mealCard-img"))
+        mealDetails();
+
+    })
+})
+
 async function fetchData() {
     let response = await fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
     let categoriesApi = await response.json()
@@ -60,44 +94,6 @@ async function fetchData() {
     })
 }
 fetchData();
-
-
-
-
-
-// SIDE BAR ITEMS
-
-let sideBarItems = Array.from(document.getElementsByClassName("sideBar-item"))
-sideBarItems.forEach((ele) => {
-    ele.addEventListener('click', async (event) => {
-        mealsInnerDiv.innerHTML = "";
-        catClose.innerHTML = "";
-
-        let categoryName = event.target.textContent;
-        let url = 'https://www.themealdb.com/api/json/v1/1/filter.php?c='
-        url += categoryName;
-
-        let response = await fetch(url);
-        let specificCategoryApi = await response.json();
-
-        mealsHeadDiv.innerHTML = `<h2 class="meal-cat-name">${categoryName}</h2>
-               <div class="underline"></div>
-            `;
-
-        specificCategoryApi.meals.forEach((obj) => {
-            let mealCardDiv = document.createElement("div");
-            mealCardDiv.classList.add("mealCard-div");
-            mealCardDiv.innerHTML = `
-                                  <img  class="mealCard-img" src="${obj.strMealThumb}" alt="${obj.strMealThumb}" >
-                                  <h6 class="mealTitle" >${obj.strMeal}</h6>
-                       `;
-            mealsInnerDiv.appendChild(mealCardDiv);
-        });
-        mealCardImages = Array.from(document.getElementsByClassName("mealCard-img"))
-        mealDetails();
-
-    })
-})
 
 
 // SPECIFIC MEAL DETAILS 
