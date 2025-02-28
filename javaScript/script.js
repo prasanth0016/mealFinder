@@ -126,10 +126,10 @@ function mealDetails() {
                 <img class="mealDetailImg" src="${imgs}" alt="${imgs}">
             </div>
             <div class="firstTwo">
-               <h4 style="color:orange;">${obj.strMeal}</h4>
+               <h4 class="mealName">${obj.strMeal}</h4>
                <h5>CATEGORY: ${obj.strCategory}</h5>
-               <h6>source: ${obj.strSource}</h6>
-               <h6>Tags:<span style="border:2px solid white; background-color:orange; color:white;">${obj.strTags}</span></h6>
+               <h6>source: <a target="_blank" href="${obj.strSource}">${obj.strSource}</a></h6>
+               <h6>Tags: <span class="tags">${obj.strTags}</span></h6>
                <div class="firstTwo-ingred">
                   <h4>Ingredients:</h4>
                   <div>${obj.strIngredient1}</div>

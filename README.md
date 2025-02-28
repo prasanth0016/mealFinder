@@ -1,2 +1,3 @@
 # mealFinder
-Development of food delivery app i.e meal finder
+Development of food prepare app i.e meal finder.
+Stack used for this project HTML , CSS , javaScript.
