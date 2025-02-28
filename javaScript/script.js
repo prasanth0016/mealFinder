@@ -125,7 +125,7 @@ function mealDetails() {
                <h4 class="mealName">${obj.strMeal}</h4>
                <h5>CATEGORY: ${obj.strCategory}</h5>
                <h6>source: <a target="_blank" href="${obj.strSource}">${obj.strSource}</a></h6>
-               <h6>Tags: <span class="tags">${obj.strTags}</span></h6>
+               <h6>Tags: <span class="tags">${obj.strTags===null||obj.strTags===""?obj.strCategory:obj.strTags}</span></h6>
                <h4>Ingredients:</h4>
 
                <ol class="firstTwo-ingred">
@@ -179,3 +179,8 @@ function mealDetails() {
     })
 }
 
+// SEARCH BY FOOD NAME
+function searchMeal(){
+    console.log("meals.......");
+    
+}
