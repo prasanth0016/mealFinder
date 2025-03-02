@@ -233,6 +233,9 @@
     padding: 15px;
 
 }
+.areaName{
+    color:orange;position:relative;bottom:210px
+}
 
 /* FOOTER */
 
@@ -243,7 +246,7 @@
     gap: 20px;
     height: 80px;
     background-color: orangered;
-    margin-top: 40px;
+    margin: 15px 0px 0px 0px;
 
 }
 
@@ -417,6 +420,90 @@
 }
 .meal-cat-name{
     margin-left: 20px;
+}
+
+/* mealIngredients-main-div */
+
+.font{
+    font-size: 8px;
+}
+.mealIngredients-main-div{
+    display: flex;
+    
+    flex-direction: column;
+    padding: 0px;
+    margin-top: 5px;
+
+}
+.firstDiv{
+    display: flex;
+    column-gap: 2px;
+    row-gap: 0px;
+    box-shadow: 2px 2px 4px orange;
+    
+
+}
+.mealDetailImg{
+    width:125px;
+    height: 300px;
+}
+.firstTwo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0px;
+    
+    flex-wrap: wrap;
+    
+}
+.firstTwo-ingred{
+    display: flex;
+ gap: 1px;
+ font-size: 6px;
+ flex-direction: column;
+ 
+    
+
+}
+.mealName{
+    color:orange; 
+}
+.tags{
+    border:0.5px solid black;
+    border-radius: 8px;
+     background-color:orange; 
+     color:white;
+}
+
+.secondDiv{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 4px orange;
+    padding: 8px;
+}
+.measure-head{
+    color: orchid;
+    font-size: 8px;
+}
+.second-second{
+    display: flex;
+    font-size: 8px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100px;
+    column-gap: 3px;
+    row-gap: 1px;
+}
+.thirdDiv{
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+    box-shadow: 2px 2px 4px gray;
+    padding: 4px;
+    font-size: 10px;
+}
+.areaName{
+    color:orange;position:relative;bottom:130px
 }
 
 /* FOOTER */

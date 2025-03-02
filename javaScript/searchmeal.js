@@ -1,109 +1,33 @@
 
 
-let catmaindiv = document.getElementById("cats-main-div");
-let mealsHeadDiv = document.getElementById("meal-head-div");
 let mealsInnerDiv = document.getElementById("mealsInner-div");
-let mealsDiv = document.getElementById("meals-div");
-let catClose = document.getElementById("cat-close");
-
+let mealsHeadDiv = document.getElementById("meal-head-div");
+let mealCardImages = [];
 let mealIngredientsMainDiv = document.getElementById("mealIngredients-main-div");
 
-let mealCardImages = [];
+async function searchMeal() {
 
-// SIDE BAR ITEMS
+    let searchBox = document.getElementById("s-box");
+    let searchInput = searchBox.value;
 
-let sideBarItems = Array.from(document.getElementsByClassName("sideBar-item"))
-sideBarItems.forEach((ele) => {
-    ele.addEventListener('click', async (event) => {
-        mealsInnerDiv.innerHTML = "";
-        catClose.innerHTML = "";
-
-        // window.scrollTo({ top: 1000, behavior: 'smooth' });
-
-        let categoryName = event.target.textContent;
-        let url = 'https://www.themealdb.com/api/json/v1/1/filter.php?c='
-        url += categoryName;
-
+    let url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+    url += searchInput;
+    let searchMealApi;
+    try {
         let response = await fetch(url);
-        let specificCategoryApi = await response.json();
+        searchMealApi = await response.json();
+        localStorage.setItem("search", JSON.stringify(searchMealApi));
 
-        mealsHeadDiv.innerHTML = `<h2 id="catName" class="meal-cat-name">${categoryName}</h2>
-               <div class="underline"></div>
-            `;
+    } catch (error) {
+        console.log("fetching searching meal details:", error);
 
-        specificCategoryApi.meals.forEach((obj) => {
-            let mealCardDiv = document.createElement("div");
-            mealCardDiv.classList.add("mealCard-div");
-            mealCardDiv.innerHTML = `
-                                  <img  class="mealCard-img" data-mealId="${obj.idMeal}" data-img="${obj.strMealThumb}" src="${obj.strMealThumb}" alt="${obj.strMealThumb}" >
-                                  <h6 class="mealTitle" >${obj.strMeal}</h6>
-                       `;
-            mealsInnerDiv.appendChild(mealCardDiv);
-        });
-        mealCardImages = Array.from(document.getElementsByClassName("mealCard-img"))
-        mealDetails();
-
-    })
-})
-
-async function fetchData() {
-    let response = await fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
-    let categoriesApi = await response.json()
-    categoriesApi.categories.forEach((obj) => {
-        let catdiv = document.createElement("div");
-        catdiv.classList.add("catdiv");
-        catdiv.innerHTML = `<h6 class="cats-title">${obj.strCategory}</h6>
-    <img class="cat-img"  src="${obj.strCategoryThumb}" alt="${obj.strCategoryThumb}">
-    `;
-        catmaindiv.appendChild(catdiv);
-    });
-
-    window.scrollTo({ top: 300, behavior: 'smooth' });
+    }
 
 
-    // MEALS LIST ADDING
-    let imgElements = Array.from(document.getElementsByClassName("cat-img"));
-    imgElements.forEach((ele) => {
-        ele.addEventListener('click', async (event) => {
+    window.location.href = "searchmeal.html";
+    
 
-            mealsInnerDiv.innerHTML = "";
-            // catClose.innerHTML = "";
-
-            //SCROLL TO TOP
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            let categoryName = event.target.previousElementSibling.textContent;
-            let url = 'https://www.themealdb.com/api/json/v1/1/filter.php?c='
-            url += categoryName;
-
-            let response = await fetch(url);
-            let specificCategoryApi = await response.json();
-
-            mealsHeadDiv.innerHTML = `<h2 id="catName" class="meal-cat-name">${categoryName}</h2>
-               <div class="underline"></div>
-            `;
-
-            specificCategoryApi.meals.forEach((obj) => {
-                let mealCardDiv = document.createElement("div");
-                mealCardDiv.classList.add("mealCard-div");
-                mealCardDiv.innerHTML = `
-                                  <img  class="mealCard-img" data-mealId="${obj.idMeal}" data-img="${obj.strMealThumb}" src="${obj.strMealThumb}" alt="${obj.strMealThumb}" >
-                                  <h6 class="mealTitle" >${obj.strMeal}</h6>
-                       `;
-                mealsInnerDiv.appendChild(mealCardDiv);
-            });
-            // console.log(Array.from(document.getElementsByClassName("mealCard-img")));
-
-            mealCardImages = Array.from(document.getElementsByClassName("mealCard-img"))
-            
-            mealDetails();
-
-
-        })
-    })
 }
-fetchData();
-
 
 // SPECIFIC MEAL DETAILS 
 
@@ -198,37 +122,36 @@ function mealDetails() {
                 mealIngredientsMainDiv.appendChild(thirdDiv);
 
             })
-
-
+            
+            getSearchMeal();
+        
         })
     })
 }
 
-// SEARCH BY FOOD NAME
+function getSearchMeal(){
+    let localItem = localStorage.getItem("search")
+    let searchMealApi = JSON.parse(localItem)
+    mealsInnerDiv.innerHTML = "";
 
-
-  async function searchMeal() {
-
-    let searchBox = document.getElementById("s-box");
-    let searchInput = searchBox.value;
-
-    let url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
-    url += searchInput;
-    let searchMealApi;
-    try {
-        let response = await fetch(url);
-        searchMealApi = await response.json();
-        localStorage.setItem("search", JSON.stringify(searchMealApi));
-
-    } catch (error) {
-        console.log("fetching searching meal details:", error);
-
-    }
-
-
-    window.location.href = "searchmeal.html";
-    
-
+    mealsHeadDiv.innerHTML = `<h2 id="catName" class="meal-cat-name">${searchMealApi.meals[0].strCategory+","+searchMealApi.meals[1].strCategory}</h2>
+    <div class="underline"></div>
+ `;
+    searchMealApi.meals.forEach((obj) => {
+        let mealCardDiv = document.createElement("div");
+        mealCardDiv.classList.add("mealCard-div");
+        mealCardDiv.innerHTML = `
+                          <img  class="mealCard-img" data-mealId="${obj.idMeal}" data-img="${obj.strMealThumb}" src="${obj.strMealThumb}" alt="${obj.strMealThumb}" >
+                          <h6 class="mealTitle" >${obj.strMeal}</h6><span class="areaName">${obj.strArea}</span>
+               `;
+        mealsInnerDiv.appendChild(mealCardDiv);
+    });
+    mealCardImages = Array.from(document.getElementsByClassName("mealCard-img"))
+            
+            mealDetails();
 }
- 
-
+window.onload = function(){
+    if(document.body.id==="searchMealPage"){
+        getSearchMeal();
+    }
+ }
