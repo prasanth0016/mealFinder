@@ -5,6 +5,43 @@ let mealsHeadDiv = document.getElementById("meal-head-div");
 let mealCardImages = [];
 let mealIngredientsMainDiv = document.getElementById("mealIngredients-main-div");
 
+// SIDE BAR ITEMS
+
+let sideBarItems = Array.from(document.getElementsByClassName("sideBar-item"))
+sideBarItems.forEach((ele) => {
+    ele.addEventListener('click', async (event) => {
+        mealsInnerDiv.innerHTML = "";
+        // catClose.innerHTML = "";
+
+        // window.scrollTo({ top: 1000, behavior: 'smooth' });
+
+        let categoryName = event.target.textContent;
+        let url = 'https://www.themealdb.com/api/json/v1/1/filter.php?c='
+        url += categoryName;
+
+        let response = await fetch(url);
+        let specificCategoryApi = await response.json();
+
+        mealsHeadDiv.innerHTML = `<h2 id="catName" class="meal-cat-name">${categoryName}</h2>
+               <div class="underline"></div>
+            `;
+
+        specificCategoryApi.meals.forEach((obj) => {
+            let mealCardDiv = document.createElement("div");
+            mealCardDiv.classList.add("mealCard-div");
+            mealCardDiv.innerHTML = `
+                                  <img  class="mealCard-img" data-mealId="${obj.idMeal}" data-img="${obj.strMealThumb}" src="${obj.strMealThumb}" alt="${obj.strMealThumb}" >
+                                  <h6 class="mealTitle" >${obj.strMeal}</h6>
+                       `;
+            mealsInnerDiv.appendChild(mealCardDiv);
+        });
+        mealCardImages = Array.from(document.getElementsByClassName("mealCard-img"))
+        mealDetails();
+
+    })
+})
+
+
 async function searchMeal() {
 
     let searchBox = document.getElementById("s-box");
@@ -25,6 +62,7 @@ async function searchMeal() {
 
 
     window.location.href = "searchmeal.html";
+    // getSearchMeal();
     
 
 }
@@ -61,7 +99,7 @@ function mealDetails() {
             <div class="firstTwo">
                <h4 class="mealName font">${obj.strMeal}</h4>
                <h5 class="font">CATEGORY: ${obj.strCategory}</h5>
-               <h6 class="font">source: <a target="_blank" href="${obj.strSource}">${obj.strSource}</a></h6>
+               <h6 class="font">source: <a target="_blank" href="${obj.strSource}">${obj.strSource===null||obj.strSource===""?"..":obj.strSource}</a></h6>
                <h6 class="font">Tags: <span class="tags">${obj.strTags === null || obj.strTags === "" ? obj.strCategory : obj.strTags}</span></h6>
                <h4 class="font">Ingredients:</h4>
 
@@ -123,7 +161,7 @@ function mealDetails() {
 
             })
             
-            getSearchMeal();
+            // getSearchMeal();
         
         })
     })
@@ -155,3 +193,7 @@ window.onload = function(){
         getSearchMeal();
     }
  }
+function moveToTop(){
+    window.scrollTo({top:0,behavior:"smooth"})
+}
+ 
