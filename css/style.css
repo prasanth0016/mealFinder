@@ -530,7 +530,11 @@
     margin-top: 40px;
 
 }
-
+.moveToTopBtn{
+    position: relative;
+    left: 110px;
+    top: 40px;
+}
 .foot-h3 {
     color: white;
     font-family: arial;
